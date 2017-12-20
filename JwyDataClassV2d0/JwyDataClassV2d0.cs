@@ -8,19 +8,19 @@ using System.Xml.Serialization;
 namespace JwyDataClassV2d0
 {
     /// <summary>
-    /// 经纬仪观测数据
-    /// 
+    /// 空中风观测数据类
     /// </summary>
+    [Serializable]
     [XmlRoot("经纬仪小球测风")]
     public class JwyObserveDataV2d0
     {
         #region 公开方法定义
         /// <summary>
-        /// 读取空中风观测记录表，得到经纬仪观测数据类
+        /// 读取空中风观测记录表文件，得到经纬仪观测数据类
         /// </summary>
-        /// <param name="fileName">记录表文件的文件名</param>
+        /// <param name="fileName">记录表文件名</param>
         /// <returns>经纬仪观测数据对象，如果文件异常则返回null</returns>
-        public static JwyObserveDataV2d0 ReadJlbFile(string fileName)
+        public static JwyObserveDataV2d0 ReadFromFile(string fileName)
         {
             JwyObserveDataV2d0 resultJwyObservefData = null;
             try
@@ -39,7 +39,12 @@ namespace JwyDataClassV2d0
             }
             return resultJwyObservefData;
         }
-        public static void SaveToJlbFile(JwyObserveDataV2d0 jwyObserveData,string fileName)
+        /// <summary>
+        /// 存储经纬仪观测数据类，到空中风观测记录表文件
+        /// </summary>
+        /// <param name="jwyObserveData">经纬仪观测数据类</param>
+        /// <param name="fileName">记录表文件名</param>
+        public static void SaveToFile(JwyObserveDataV2d0 jwyObserveData, string fileName)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(JwyObserveDataV2d0));
             StreamWriter sW = new StreamWriter(fileName);
@@ -132,6 +137,107 @@ namespace JwyDataClassV2d0
         public BwV2d0 Bw { get; set; }
         #endregion
     }
+
+    /// <summary>
+    /// 站点配置数据类
+    /// </summary>
+    [Serializable]
+    [XmlRoot("测站配置数据")]
+    public class StationCfgDataV2d0
+    {
+        #region 公开方法定义
+        /// <summary>
+        /// 读取站点配置文件，得到站点配置数据类
+        /// </summary>
+        /// <param name="fileName">站点配置文件</param>
+        /// <returns>站点配置数据类，如果文件异常则返回null</returns>
+        public static StationCfgDataV2d0 ReadFromFile(string fileName)
+        {
+            StationCfgDataV2d0 resultStationCfgData = null;
+            try
+            {
+                if (File.Exists(fileName))
+                {
+                    StreamReader sR = new StreamReader(fileName);
+                    XmlSerializer xmlS = new XmlSerializer(typeof(StationCfgDataV2d0));
+                    resultStationCfgData = (StationCfgDataV2d0)xmlS.Deserialize(sR);
+                    sR.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + ex.StackTrace);
+            }
+            return resultStationCfgData;
+        }
+        /// <summary>
+        /// 存储站点配置数据类，到站点配置文件
+        /// </summary>
+        /// <param name="jwyObserveData">站点配置数据类</param>
+        /// <param name="fileName">站点配置文件名</param>
+        public static void SaveToFile(StationCfgDataV2d0 stationCfgData, string fileName)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(StationCfgDataV2d0));
+            StreamWriter sW = new StreamWriter(fileName);
+            try
+            {
+                xmlSerializer.Serialize(sW, stationCfgData);
+            }
+            finally
+            {
+                sW.Close();
+            }
+        }
+        #endregion
+
+        #region 属性
+        [XmlElement("升速")]
+        public int m_nBallVelocity { get; set; }//升速
+        [XmlElement("球皮重")]
+        public int m_iQpz { get; set; }//球皮重
+        [XmlElement("附加物重")]
+        public int m_iFjwz { get; set; }//附加物重
+        [XmlElement("标准密度升速值")]
+        public int m_iBzmdssz { get; set; }//标准密度升速值
+        [XmlElement("净举力")]
+        public int m_iJjl { get; set; }//净举力
+        [XmlElement("总举力")]
+        public int m_iZjl { get; set; }//总举力
+        [XmlElement("砝码重")]
+        public int m_iFmz { get; set; }//砝码重
+        [XmlElement("地面气温")]
+        public float m_fDmqw { get; set; }//地面气温
+        [XmlElement("地面气压")]
+        public float m_fDmqy { get; set; }//地面气压
+        [XmlElement("站名")]
+        public string m_sZm { get; set; }//站名100
+        [XmlElement("固定站号")]
+        public string m_sGdzh { get; set; }//固定站号40
+        [XmlElement("加密站号")]
+        public string m_sJmzh { get; set; }//加密站号40
+        [XmlElement("气球颜色")]
+        public string m_sQqys { get; set; }//气球颜色40
+        [XmlElement("测风仪器")]
+        public string m_sCfyq { get; set; }//测风仪器40
+        [XmlElement("仪器编号")]
+        public string m_sJwybh { get; set; }//仪器编号
+        [XmlElement("海拔高度")]
+        public float m_fAltitude { get; set; }//海拔高度
+        [XmlElement("东经度")]
+        public int m_iDjd { get; set; }//东经度
+        [XmlElement("东经分")]
+        public int m_iDjf { get; set; }//东经分
+        [XmlElement("北纬度")]
+        public int m_iBwd { get; set; }//北纬度
+        [XmlElement("北纬分")]
+        public int m_iBwf { get; set; }//北纬分
+        [XmlElement("仰角器差")]
+        public float m_fElevationDeviation { get; set; }//仰角器差
+        [XmlElement("方位角器差")]
+        public float m_fAzimuthDeviation { get; set; }//方位角器差
+        #endregion
+    }
+    #region 类定义
     /// <summary>
     /// 基本信息
     /// </summary>
@@ -232,7 +338,7 @@ namespace JwyDataClassV2d0
     /// 气球参数
     /// 7
     /// </summary>
-    [XmlRoot("气球参数")]
+    [XmlRoot("基本信息")]
     public class BallonInfoV2d0
     {
         [XmlElement("气球颜色")]
@@ -250,6 +356,7 @@ namespace JwyDataClassV2d0
         [XmlElement("砝码重")]
         public int m_iFmz { set; get; }//砝码重
     }
+
     /// <summary>
     /// 地面气象要素
     /// </summary>
@@ -307,6 +414,7 @@ namespace JwyDataClassV2d0
         public int m_iZsydg { set; get; }//真实云底高
 
     }
+
     /// <summary>
     /// 观测数据 目标时间方位仰角数据集
     /// </summary>
@@ -346,6 +454,7 @@ namespace JwyDataClassV2d0
         public double m_dAzimuth { get; set; }
          * */
     }
+
     /// <summary>
     /// 计算层风数据集类
     /// </summary>
@@ -356,6 +465,7 @@ namespace JwyDataClassV2d0
         public int m_iSjgs { get; set; }
         [XmlElement("数据")]
         public List<FloorWindDataV2d0> FloorWindDatas { get; set; }
+
     }
     /// <summary>
     /// 计算层风数据
@@ -374,6 +484,7 @@ namespace JwyDataClassV2d0
         [XmlAttribute("风速")]
         public double FloorWindTopTime { get; set; }
     }
+
     /// <summary>
     /// 距经纬仪规定高度风数据集类
     /// </summary>
@@ -402,6 +513,7 @@ namespace JwyDataClassV2d0
         [XmlAttribute("风速")]
         public double DisEquipmentWindVec { get; set; }
     }
+
     /// <summary>
     /// 距海平面规定高度风数据集类
     /// </summary>
@@ -430,7 +542,7 @@ namespace JwyDataClassV2d0
         [XmlAttribute("风速")]
         public double DisSeaLevelWindVec { get; set; }
     }
-    
+
     /// <summary>
     /// 最大风层数据集类
     /// </summary>
@@ -500,6 +612,7 @@ namespace JwyDataClassV2d0
         [XmlAttribute("风速")]
         public double ResultantWindVec { get; set; }
     }
+
     /// <summary>
     /// 报文类
     /// </summary>
@@ -542,7 +655,7 @@ namespace JwyDataClassV2d0
         /// 报文数据
         /// </summary>
         [XmlAttribute("报文")]
-        public string m_sBwCode { get; set; }       
-    } 
-
+        public string m_sBwCode { get; set; }
+    }
+    #endregion
 }
