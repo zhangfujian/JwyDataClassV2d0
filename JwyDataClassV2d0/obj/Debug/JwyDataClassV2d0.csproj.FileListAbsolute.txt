@@ -3,3 +3,8 @@ C:\Users\Administrator\Documents\Visual Studio 2008\Projects\JwyDataClassV2d0\Jw
 C:\Users\Administrator\Documents\Visual Studio 2008\Projects\JwyDataClassV2d0\JwyDataClassV2d0\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\Visual Studio 2008\Projects\JwyDataClassV2d0\JwyDataClassV2d0\obj\Debug\JwyDataClassV2d0.dll
 C:\Users\Administrator\Documents\Visual Studio 2008\Projects\JwyDataClassV2d0\JwyDataClassV2d0\obj\Debug\JwyDataClassV2d0.pdb
+D:\test_place\JwyDataClassV2d0\JwyDataClassV2d0\bin\Debug\JwyDataClassV2d0.dll
+D:\test_place\JwyDataClassV2d0\JwyDataClassV2d0\bin\Debug\JwyDataClassV2d0.pdb
+D:\test_place\JwyDataClassV2d0\JwyDataClassV2d0\obj\Debug\ResolveAssemblyReference.cache
+D:\test_place\JwyDataClassV2d0\JwyDataClassV2d0\obj\Debug\JwyDataClassV2d0.dll
+D:\test_place\JwyDataClassV2d0\JwyDataClassV2d0\obj\Debug\JwyDataClassV2d0.pdb

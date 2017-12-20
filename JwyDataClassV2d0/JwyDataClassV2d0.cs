@@ -7,7 +7,10 @@ using System.Xml.Serialization;
 
 namespace JwyDataClassV2d0
 {
-    [Serializable]
+    /// <summary>
+    /// 经纬仪观测数据
+    /// 
+    /// </summary>
     [XmlRoot("经纬仪小球测风")]
     public class JwyObserveDataV2d0
     {
@@ -50,7 +53,7 @@ namespace JwyDataClassV2d0
             }
         }
         #endregion
-        #region 属性定义
+        #region 属性
         /// <summary>
         /// 版本号
         /// </summary>
@@ -127,7 +130,7 @@ namespace JwyDataClassV2d0
 
         [XmlElement("报文")]
         public BwV2d0 Bw { get; set; }
-
+        #endregion
     }
     /// <summary>
     /// 基本信息
@@ -203,7 +206,7 @@ namespace JwyDataClassV2d0
     /// 测站参数
     /// 8
     /// </summary>
-    [XmlRoot("基本信息")]
+    [XmlRoot("测站参数")]
     public class StationInfoV2d0
     {
         [XmlElement("站名")]
@@ -229,7 +232,7 @@ namespace JwyDataClassV2d0
     /// 气球参数
     /// 7
     /// </summary>
-    [XmlRoot("基本信息")]
+    [XmlRoot("气球参数")]
     public class BallonInfoV2d0
     {
         [XmlElement("气球颜色")]
@@ -250,7 +253,7 @@ namespace JwyDataClassV2d0
     /// <summary>
     /// 地面气象要素
     /// </summary>
-    [XmlRoot("基本信息")]
+    [XmlRoot("地面气象要素")]
     public class GroundObserveInfoV2d0
     {
         [XmlElement("有效能见度")]
@@ -318,7 +321,6 @@ namespace JwyDataClassV2d0
     /// <summary>
     /// 目标时间方位仰角数据
     /// </summary>
-    //[XmlRoot("数据")]
     [Serializable()]
     public class TargetTEADataV2d0
     {
@@ -354,7 +356,6 @@ namespace JwyDataClassV2d0
         public int m_iSjgs { get; set; }
         [XmlElement("数据")]
         public List<FloorWindDataV2d0> FloorWindDatas { get; set; }
-
     }
     /// <summary>
     /// 计算层风数据
@@ -429,8 +430,7 @@ namespace JwyDataClassV2d0
         [XmlAttribute("风速")]
         public double DisSeaLevelWindVec { get; set; }
     }
-
-
+    
     /// <summary>
     /// 最大风层数据集类
     /// </summary>
@@ -542,7 +542,7 @@ namespace JwyDataClassV2d0
         /// 报文数据
         /// </summary>
         [XmlAttribute("报文")]
-        public string m_sBwCode { get; set; }
-        #endregion
-    }
+        public string m_sBwCode { get; set; }       
+    } 
+
 }
